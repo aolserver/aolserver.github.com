@@ -1,0 +1,26 @@
+---
+layout: default
+base: ../../../
+---
+{% capture post_id %}{{ page.id | remove_first:"/" | replace:"/","-" }}{% endcapture %}
+{% capture day %}{{ page.date | date:"%d" }}{% endcapture %}
+{% capture post_date %}{{ page.date | date:"%A, %B" }} {% case day %}{% when '01' %}1{% when '02' %}2{% when '03' %}3{% when '04' %}4{% when '05' %}5{% when '06' %}6{% when '07' %}7{% when '08' %}8{% when '09' %}9{% else %}{{ day }}{% endcase %}, {{ page.date | date:"%Y" }}{% endcapture %}
+
+<h1><a href="http://aolserver.github.com/"><img src="http://www.aolserver.com/images/aolserver.png" width="380" height="90" border="0" /></a></h1>
+
+<p>&laquo; <a href="{{ page.base }}">Back</a></p>
+
+<div class="post" id="post-{{ post_id }}">
+  <h2 class="post-title">{{ page.title }}</h2>
+
+  <div class="post-meta">
+{% if page.author %}
+    by <a class="post-author" href="{{ page.author.url }}">{{ page.author.name }}</a>
+{% endif %}
+    on <span class="post-date">{{ post_date }}</span>
+  </div>
+
+  <div class="post-body">
+    {{ content }}
+  </div>
+</div>
